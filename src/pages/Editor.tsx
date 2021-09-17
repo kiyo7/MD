@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
+//style
 import styled from 'styled-components';
+
+//hooks
+import { useStateWithStorage } from '../hooks/use_state_with_storage';
 
 const Wrapper = styled.div`
   bottom: 0;
@@ -36,18 +40,14 @@ const Preview = styled.div`
 const StorageKey = 'pages/editor:text';
 
 export const Editor: React.FC = () => {
-  const [text, setText] = useState<string>(
-    localStorage.getItem(StorageKey) || ''
-  );
+  const [text, setText] = useStateWithStorage('', StorageKey);
 
   return (
     <>
       <Wrapper>
         <TextArea
           onChange={(e) => {
-            const changedText = e.target.value;
-            localStorage.setItem(StorageKey, changedText);
-            setText(changedText);
+            setText(e.target.value);
           }}
           value={text}
         />
