@@ -1,7 +1,8 @@
 import React from 'react';
 
-//style
+//lib
 import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
 
 //hooks
 import { useStateWithStorage } from '../hooks/use_state_with_storage';
@@ -51,7 +52,9 @@ export const Editor: React.FC = () => {
           }}
           value={text}
         />
-        <Preview>プレビューエリア</Preview>
+        <Preview>
+          <ReactMarkdown children={text} />
+        </Preview>
       </Wrapper>
     </>
   );
