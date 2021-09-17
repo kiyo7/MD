@@ -4,7 +4,6 @@ import { render } from 'react-dom';
 //style
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
-import { Header } from './components/molecule/Header/Header';
 
 //components
 import { Editor } from './pages/Editor';
@@ -17,7 +16,6 @@ body * {
 const Main = (
   <>
     <GlobalStyle />
-    <Header />
     <Editor />
   </>
 );
