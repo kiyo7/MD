@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 //lib
 import styled from 'styled-components';
@@ -13,6 +13,7 @@ import { putMemo } from '../indexeddb/memos';
 //components
 import { MdIcon } from '../components/atom/icon/MdIcon';
 import { Button } from '../components/atom/button/Button';
+import { SaveModal } from '../components/molecule/modal/SaveModal';
 
 const SHeader = styled.header`
   align-content: center;
@@ -73,10 +74,7 @@ const StorageKey = 'pages/editor:text';
 
 export const Editor: React.FC = () => {
   const [text, setText] = useStateWithStorage('', StorageKey);
-
-  const saveMemo = () => {
-    putMemo('TITLE', text);
-  };
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -85,7 +83,7 @@ export const Editor: React.FC = () => {
           <MdIcon />
           <SHeaderTitle>MarkDown Editor</SHeaderTitle>
         </SHeaderContents>
-        <Button onClick={saveMemo}>保存する</Button>
+        <Button onClick={() => setShowModal(true)}>完成</Button>
       </SHeader>
       <Wrapper>
         <TextArea
@@ -98,6 +96,15 @@ export const Editor: React.FC = () => {
           <ReactMarkdown children={text} />
         </Preview>
       </Wrapper>
+      {showModal && (
+        <SaveModal
+          onSave={(title: string): void => {
+            putMemo(title, text);
+            setShowModal(false);
+          }}
+          onCancel={() => setShowModal(false)}
+        />
+      )}
     </>
   );
 };
