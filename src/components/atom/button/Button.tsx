@@ -9,24 +9,24 @@ interface Props {
 }
 
 const SButton = styled.button`
-  background-color: dodgerblue;
-  border: none;
-  box-shadow: none;
-  color: white;
-  font-size: 1rem;
   height: 2rem;
   min-width: 5rem;
+  color: white;
+  background-color: dodgerblue;
   padding: 0 1rem;
+  font-size: 1rem;
+  box-shadow: none;
+  border: none;
 
   :hover {
     cursor: pointer;
-    opacity: 0.7;
+    opacity: 0.6;
   }
 
   &.cancel {
+    color: gray;
     background: white;
     border: 1px solid gray;
-    color: gray;
 
     :hover {
       color: white;

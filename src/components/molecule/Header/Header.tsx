@@ -5,10 +5,19 @@ import styled from 'styled-components';
 //components
 import { MdIcon } from '../../atom/icon/MdIcon';
 
+const SHeaderArea = styled.div`
+  position: fixed;
+  height: 60px;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: tomato;
+`;
+
 const SHeaderWrapper = styled.header`
-  align-content: center;
   display: flex;
   height: 2rem;
+  align-content: center;
   justify-content: space-between;
   line-height: 2rem;
   padding: 0.5rem 1rem;
@@ -16,8 +25,8 @@ const SHeaderWrapper = styled.header`
 
 const SHeaderLeft = styled.div`
   display: flex;
-  line-height: 0.5rem;
   height: 2rem;
+  line-height: 0.5rem;
 `;
 
 const SHeaderTitle = styled.h1`
@@ -30,9 +39,9 @@ const SHeaderRight = styled.div`
 `;
 
 const SHeaderControl = styled.div`
-  align-content: center;
   display: flex;
   height: 2rem;
+  align-content: center;
   justify-content: center;
 
   & > * {
@@ -49,14 +58,16 @@ export const Header: React.FC<Props> = (props) => {
   const { title, children } = props;
 
   return (
-    <SHeaderWrapper>
-      <SHeaderLeft>
-        <MdIcon />
-        <SHeaderTitle>{title}</SHeaderTitle>
-      </SHeaderLeft>
-      <SHeaderRight>
-        <SHeaderControl>{children}</SHeaderControl>
-      </SHeaderRight>
-    </SHeaderWrapper>
+    <SHeaderArea>
+      <SHeaderWrapper>
+        <SHeaderLeft>
+          <MdIcon />
+          <SHeaderTitle>{title}</SHeaderTitle>
+        </SHeaderLeft>
+        <SHeaderRight>
+          <SHeaderControl>{children}</SHeaderControl>
+        </SHeaderRight>
+      </SHeaderWrapper>
+    </SHeaderArea>
   );
 };
