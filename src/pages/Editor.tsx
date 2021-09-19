@@ -11,36 +11,16 @@ import { useStateWithStorage } from '../hooks/use_state_with_storage';
 import { putMemo } from '../indexeddb/memos';
 
 //components
-import { MdIcon } from '../components/atom/icon/MdIcon';
+import { Header } from '../components/molecule/Header/Header';
 import { Button } from '../components/atom/button/Button';
 import { SaveModal } from '../components/molecule/modal/SaveModal';
 
-const SHeader = styled.header`
-  align-content: center;
-  height: 2rem;
-  display: flex;
-  justify-content: space-between;
-  left: 0;
-  line-height: 2rem;
-  padding: 0.5rem 1rem;
+const SHeaderArea = styled.div`
   position: fixed;
   right: 0;
+  top: 3rem;
   top: 0;
-`;
-
-const SHeaderLeft = styled.div`
-  display: flex;
-  line-height: 0.5rem;
-  height: 2rem;
-`;
-
-const SHeaderRight = styled.div`
-  display: flex;
-`;
-
-const SHeaderTitle = styled.h1`
-  font-size: 1.5rem;
-  font-family: 'Impact';
+  left: 0;
 `;
 
 const Wrapper = styled.div`
@@ -82,18 +62,14 @@ export const Editor: React.FC = () => {
 
   return (
     <>
-      <SHeader>
-        <SHeaderLeft>
-          <MdIcon />
-          <SHeaderTitle>MarkDown Editor</SHeaderTitle>
-        </SHeaderLeft>
-        <SHeaderRight>
+      <SHeaderArea>
+        <Header title="MarkDown Editor">
           <div style={{ marginRight: '15px' }}>
             <Link to="/history">履歴を見る</Link>
           </div>
           <Button onClick={() => setShowModal(true)}>完成</Button>
-        </SHeaderRight>
-      </SHeader>
+        </Header>
+      </SHeaderArea>
       <Wrapper>
         <TextArea
           onChange={(e) => {

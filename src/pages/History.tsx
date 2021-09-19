@@ -1,16 +1,34 @@
 //lib
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+import { useHistory, Link } from 'react-router-dom';
 
 //components
-import { Button } from '../components/atom/button/Button';
+import { Header } from '../components/molecule/Header/Header';
+
+const SHeaderArea = styled.div`
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+`;
+
+const SWrapper = styled.div`
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 3rem;
+  padding: 0 1rem;
+`;
 
 export const History: React.FC = () => {
-  const history = useHistory();
   return (
-    <>
-      <h1>履歴</h1>
-      <Button onClick={() => history.push('/editor')}>エディタに戻る</Button>
-    </>
+    <SHeaderArea>
+      <Header title="History">
+        <Link to="/editor">エディタに戻る</Link>
+      </Header>
+      <SWrapper>TODO: 履歴表示</SWrapper>
+    </SHeaderArea>
   );
 };
