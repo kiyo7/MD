@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-
 //lib
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
+import { Link } from 'react-router-dom';
 
 //hooks
 import { useStateWithStorage } from '../hooks/use_state_with_storage';
@@ -28,10 +28,14 @@ const SHeader = styled.header`
   top: 0;
 `;
 
-const SHeaderContents = styled.div`
+const SHeaderLeft = styled.div`
   display: flex;
   line-height: 0.5rem;
   height: 2rem;
+`;
+
+const SHeaderRight = styled.div`
+  display: flex;
 `;
 
 const SHeaderTitle = styled.h1`
@@ -48,8 +52,8 @@ const Wrapper = styled.div`
 `;
 
 const TextArea = styled.textarea`
-  border-right: 1px solid silver;
-  border-top: 1px solid silver;
+  border-right: 3px solid silver;
+  border-top: 3px solid silver;
   bottom: 0;
   font-size: 1rem;
   left: 0;
@@ -60,7 +64,7 @@ const TextArea = styled.textarea`
 `;
 
 const Preview = styled.div`
-  border-top: 1px solid silver;
+  border-top: 3px solid silver;
   bottom: 0;
   overflow-y: scroll;
   padding: 1rem;
@@ -79,11 +83,16 @@ export const Editor: React.FC = () => {
   return (
     <>
       <SHeader>
-        <SHeaderContents>
+        <SHeaderLeft>
           <MdIcon />
           <SHeaderTitle>MarkDown Editor</SHeaderTitle>
-        </SHeaderContents>
-        <Button onClick={() => setShowModal(true)}>完成</Button>
+        </SHeaderLeft>
+        <SHeaderRight>
+          <div style={{ marginRight: '15px' }}>
+            <Link to="/history">履歴を見る</Link>
+          </div>
+          <Button onClick={() => setShowModal(true)}>完成</Button>
+        </SHeaderRight>
       </SHeader>
       <Wrapper>
         <TextArea

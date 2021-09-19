@@ -1,6 +1,5 @@
-import React from 'react';
-
 //lib
+import React from 'react';
 import styled from 'styled-components';
 
 interface Props {
@@ -21,7 +20,7 @@ const SButton = styled.button`
 
   :hover {
     cursor: pointer;
-    opacity: 0.9;
+    opacity: 0.7;
   }
 
   &.cancel {

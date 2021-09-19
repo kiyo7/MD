@@ -1,3 +1,4 @@
+//lib
 import { useState } from 'react';
 
 //テキストエリアに値を出力し、変更があった場合localStorageに保存する
