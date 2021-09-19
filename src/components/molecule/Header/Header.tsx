@@ -47,6 +47,7 @@ interface Props {
 
 export const Header: React.FC<Props> = (props) => {
   const { title, children } = props;
+
   return (
     <SHeaderWrapper>
       <SHeaderLeft>

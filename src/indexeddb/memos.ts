@@ -17,3 +17,8 @@ export const putMemo = async (title: string, text: string): Promise<void> => {
   const datetime = new Date().toISOString();
   await memos.put({ datetime, title, text });
 };
+
+// テキスト履歴を配列で取得する
+export const getMemos = (): Promise<MemoRecord[]> => {
+  return memos.orderBy('datetime').reverse().toArray();
+};

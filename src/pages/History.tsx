@@ -1,7 +1,10 @@
 //lib
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useHistory, Link } from 'react-router-dom';
+
+//function
+import { getMemos, MemoRecord } from '../indexeddb/memos';
 
 //components
 import { Header } from '../components/molecule/Header/Header';
@@ -22,13 +25,64 @@ const SWrapper = styled.div`
   padding: 0 1rem;
 `;
 
-export const History: React.FC = () => {
+const SMemo = styled.button`
+  display: block;
+  background-color: white;
+  border: 2px solid black;
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem 0;
+  text-align: left;
+`;
+
+const SMemoTitle = styled.div`
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Impact';
+`;
+
+const SMemoText = styled.div`
+  font-size: 0.85rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+interface Props {
+  setText: (text: string) => void;
+}
+
+export const History: React.FC<Props> = (props) => {
+  const { setText } = props;
+
+  const [memos, setMemos] = useState<MemoRecord[]>([]);
+
+  const history = useHistory();
+
+  useEffect(() => {
+    getMemos().then(setMemos);
+  }, []);
   return (
     <SHeaderArea>
       <Header title="History">
         <Link to="/editor">エディタに戻る</Link>
       </Header>
-      <SWrapper>TODO: 履歴表示</SWrapper>
+      <SWrapper>
+        {memos.map((memo) => {
+          return (
+            <SMemo
+              key={memo.datetime}
+              onClick={() => {
+                setText(memo.text);
+                history.push('/editor');
+              }}
+            >
+              <SMemoTitle>{memo.title}</SMemoTitle>
+              <SMemoText>{memo.text}</SMemoText>
+            </SMemo>
+          );
+        })}
+      </SWrapper>
     </SHeaderArea>
   );
 };
